@@ -97,3 +97,28 @@
 - `npm run test:orchestrator` — pass: inventory, finance, sales, GST, support, unknown, and blank-query scenarios.
 
 **Status:** ✅ Complete and isolated; Session 10 will integrate it.
+
+## Session 4 — Inventory Agent
+
+**Goal:** Produce an evidence-based stock finding, depletion forecast, reorder quantity, and supplier suggestion.
+
+**Planning:**
+- Add `backend/agents/inventoryAgent.js` and an isolated smoke test.
+- Read only the requested product, its supplier, and its last 30 days of sales from SQLite.
+- Compute daily velocity and days to depletion; use the reorder threshold as the safe fallback when there is no sales history.
+- Suggest stock covering supplier lead time plus a seven-day buffer; report lower confidence for sparse data.
+
+**Generation:**
+- Files: backend/agents/inventoryAgent.js, backend/agents/inventoryAgent.test.js
+- Added the `test:inventory` npm script.
+
+**Self-Review:**
+- Returns the required shared agent result contract and reads only product, supplier, and sales data.
+- Handles invalid/missing products and zero-sales products without division by zero.
+- Uses a 30-day velocity, supplier lead time, and a 7-day buffer; sparse history lowers confidence.
+- No unused imports, secrets, or direct calls to other agents.
+
+**Testing:**
+- `npm run test:inventory` — pass: low-stock, new-product/no-sales, and high-sales scenarios.
+
+**Status:** ✅ Complete and isolated; Session 10 will integrate it.
