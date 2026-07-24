@@ -63,6 +63,8 @@
 - Started the API against a new temporary database — pass; startup created and seeded the database, `/api/health` returned OK, and the products table contained 10 rows.
 
 **Deployment:**
-- Pending: push to GitHub to trigger Render deployment, then verify the live API.
+- Pushed commit `3bf793d` to GitHub, triggering the connected Render deployment.
+- Verified the live `/api/health` endpoint remains available after the push.
+- The server invokes the idempotent seed at startup, so Render recreates demo data after an instance restart or redeploy.
 
-**Status:** Local implementation and smoke tests complete.
+**Status:** ✅ Schema and seed generator complete, deployed through the existing Render pipeline.
