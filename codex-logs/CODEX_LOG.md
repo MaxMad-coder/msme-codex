@@ -68,3 +68,8 @@
 - The server invokes the idempotent seed at startup, so Render recreates demo data after an instance restart or redeploy.
 
 **Status:** ✅ Schema and seed generator complete, deployed through the existing Render pipeline.
+
+**Post-completion audit:**
+- Removed one unused import from the seed script.
+- Re-seeded a fresh database twice; confirmed expected counts, no foreign-key violations, no duplicate or missing product-sales groups, and no sales-price mismatches.
+- Confirmed required product/sales/supplier indexes exist and scanned committed history for project-style API keys.

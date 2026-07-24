@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { pathToFileURL } from 'node:url';
 import sqlite3 from 'sqlite3';
 
 const schemaPath = new URL('../db/schema.sql', import.meta.url);
