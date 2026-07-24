@@ -25,6 +25,9 @@
 - `npm run build` in `frontend/` — pass.
 
 **Deployment:**
-- Pending owner action: GitHub push, Render Web Service configuration, and Vercel project configuration.
+- Backend: https://msme-codex.onrender.com
+- Frontend: https://msme-codex-cvmkvay10-laingdao-saeng.vercel.app
+- Verified `GET /api/health` returns `status: ok` and the frontend returns HTTP 200.
+- Verified API CORS permits the deployed frontend origin (`Access-Control-Allow-Origin: *`).
 
-**Status:** Local empty shell is complete and deployable. Hosted deployment remains owner action.
+**Status:** ✅ Empty shell deployed and live.
