@@ -73,3 +73,27 @@
 - Removed one unused import from the seed script.
 - Re-seeded a fresh database twice; confirmed expected counts, no foreign-key violations, no duplicate or missing product-sales groups, and no sales-price mismatches.
 - Confirmed required product/sales/supplier indexes exist and scanned committed history for project-style API keys.
+
+## Session 3 — Orchestrator Agent
+
+**Goal:** Classify a shop-owner query and return the minimum ordered set of agents needed to answer it.
+
+**Planning:**
+- Add `backend/agents/orchestrator.js` and an isolated smoke test.
+- Match inventory, finance, sales, GST, and support vocabulary; use Sales before Inventory when both are required.
+- Treat blank input as invalid and unknown queries as a generic sales/inventory fallback.
+- Do not import or call other agents: integration belongs exclusively to the Session 10 API route.
+
+**Generation:**
+- Files: backend/agents/orchestrator.js, backend/agents/orchestrator.test.js
+- Added the `test:orchestrator` npm script.
+
+**Self-Review:**
+- Returns the shared finding/recommendation/confidence/reasoning contract, with `agents_to_call` for the later route.
+- Has no unused imports, hardcoded secrets, or direct agent-to-agent calls.
+- Rejects blank input and uses a low-confidence sales/inventory fallback for unknown intent.
+
+**Testing:**
+- `npm run test:orchestrator` — pass: inventory, finance, sales, GST, support, unknown, and blank-query scenarios.
+
+**Status:** ✅ Complete and isolated; Session 10 will integrate it.
