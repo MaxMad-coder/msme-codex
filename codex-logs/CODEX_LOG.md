@@ -30,4 +30,9 @@
 - Verified `GET /api/health` returns `status: ok` and the frontend returns HTTP 200.
 - Verified API CORS permits the deployed frontend origin (`Access-Control-Allow-Origin: *`).
 
+**Day 1 reference review:**
+- Confirmed the selected stack: React/Vite/Tailwind frontend on Vercel; Node/Express API with SQLite/OpenAI configuration on Render.
+- Reviewed the Day 2 data model: products, sales, expenses, suppliers, customers, and agent_runs.
+- Reviewed the project flow: database and idempotent seed first, then one independently tested agent per session, followed by orchestration and UI wiring.
+
 **Status:** ✅ Empty shell deployed and live.
