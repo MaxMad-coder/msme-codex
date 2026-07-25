@@ -98,6 +98,29 @@
 
 **Status:** ✅ Complete and isolated; Session 10 will integrate it.
 
+## Session 5 — Finance Agent
+
+**Goal:** Assess whether a proposed purchase is affordable from seeded sales, expenses, and customer dues.
+
+**Planning:**
+- Add an isolated SQLite-backed finance agent and smoke test.
+- Calculate cash position as recorded sales less expenses; subtract pending customer dues for a conservative available budget.
+- Return the shared result contract for healthy, tight, and negative-balance scenarios.
+
+**Generation:**
+- Files: backend/agents/financeAgent.js, backend/agents/financeAgent.test.js
+- Added the `test:finance` npm script.
+
+**Self-Review:**
+- Uses sales, expenses, and customer dues only; it does not call another agent.
+- Rejects invalid costs, uses INR arithmetic consistently, and reserves outstanding dues conservatively.
+- No unused imports or secrets; every outcome returns the shared result contract.
+
+**Testing:**
+- `npm run test:finance` — pass: healthy cash, unaffordable/tight cash, and invalid-cost scenarios.
+
+**Status:** ✅ Complete and isolated; Session 10 will integrate it.
+
 ## Session 4 — Inventory Agent
 
 **Goal:** Produce an evidence-based stock finding, depletion forecast, reorder quantity, and supplier suggestion.

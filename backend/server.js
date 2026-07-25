@@ -1,6 +1,7 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import askRouter from './routes/ask.js';
 import { seedDatabase } from './seed/seedData.js';
 
 dotenv.config();
@@ -28,12 +29,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.post('/api/ask', (_req, res) => {
-  res.json({
-    message: 'Endpoint not yet implemented. Build agents first.',
-    status: 'pending',
-  });
-});
+app.use('/api', askRouter);
 
 app.listen(PORT, () => {
   console.log(`MSME AI Copilot API running on http://localhost:${PORT}`);

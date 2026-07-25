@@ -9,7 +9,8 @@
     "dev": "nodemon server.js",
     "seed": "node seed/seedData.js",
     "test:orchestrator": "node agents/orchestrator.test.js",
-    "test:inventory": "node agents/inventoryAgent.test.js"
+    "test:inventory": "node agents/inventoryAgent.test.js",
+    "test:finance": "node agents/financeAgent.test.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
