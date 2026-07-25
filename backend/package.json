@@ -8,9 +8,14 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "seed": "node seed/seedData.js",
+    "test": "npm run test:all",
+    "test:all": "npm run test:orchestrator && npm run test:inventory && npm run test:finance && npm run test:sales && npm run test:gst && npm run test:support",
     "test:orchestrator": "node agents/orchestrator.test.js",
     "test:inventory": "node agents/inventoryAgent.test.js",
-    "test:finance": "node agents/financeAgent.test.js"
+    "test:finance": "node agents/financeAgent.test.js",
+    "test:sales": "node agents/salesAgent.test.js",
+    "test:gst": "node agents/gstAgent.test.js",
+    "test:support": "node agents/supportAgent.test.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
