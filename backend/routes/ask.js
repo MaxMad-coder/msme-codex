@@ -178,6 +178,7 @@ router.post('/ask', async (req, res) => {
     }
 
     const synthesized = synthesizeRecommendations({ agents_outputs: agentOutputs });
+    const agentRunId = uuidv4();
     const db = openDb();
     try {
       const runResult = await run(db, `
@@ -185,7 +186,7 @@ router.post('/ask', async (req, res) => {
           (id, query, agents_invoked, reasoning_chain, final_output, confidence, timestamp)
         VALUES (?, ?, ?, ?, ?, ?, ?)
       `, [
-        uuidv4(),
+        agentRunId,
         query,
         JSON.stringify(orchestration.agents_to_call),
         JSON.stringify(agentOutputs),
@@ -204,6 +205,7 @@ router.post('/ask', async (req, res) => {
       reasoning_chain: synthesized.reasoning_chain,
       final_answer: synthesized.final_answer,
       confidence: synthesized.confidence,
+      agent_runs_id: agentRunId,
     });
   } catch (error) {
     console.error('Error in /api/ask:', error);
