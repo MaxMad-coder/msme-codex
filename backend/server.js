@@ -17,7 +17,8 @@ try {
 }
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  // Allow the configured FRONTEND_URL or fall back to allowing all origins for demo convenience
+  origin: process.env.FRONTEND_URL || '*',
 }));
 app.use(express.json());
 

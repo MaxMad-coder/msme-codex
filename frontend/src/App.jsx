@@ -3,7 +3,8 @@ import axios from 'axios';
 import HealthScore from './components/HealthScore.jsx';
 import ExplainabilityModal from './components/ExplainabilityModal.jsx';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use VITE_API_URL when set (Vercel), otherwise fall back to the Render backend URL
+const API_BASE = import.meta.env.VITE_API_URL || 'https://msme-codex.onrender.com';
 
 export default function App() {
   const [query, setQuery] = useState('Check sugar stock and reorder if needed');
