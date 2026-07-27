@@ -24,6 +24,8 @@ export function synthesizeRecommendations({ agents_outputs = [] } = {}) {
       recommendation: output.recommendation,
       confidence: output.confidence,
       reasoning: output.reasoning,
+      latency_ms: output.latency_ms,
+      cost: output.cost,
     })),
   };
 }

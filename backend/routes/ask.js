@@ -34,6 +34,23 @@ function run(db, sql, parameters = []) {
   }));
 }
 
+function getAgentCost(agentName) {
+  switch (agentName) {
+    case 'inventory':
+      return 1.5;
+    case 'finance':
+      return 1.2;
+    case 'sales':
+      return 1.0;
+    case 'gst':
+      return 0.8;
+    case 'support':
+      return 0.9;
+    default:
+      return 0.5;
+  }
+}
+
 function close(db) {
   return new Promise((resolve, reject) => db.close((error) => (error ? reject(error) : resolve())));
 }
@@ -152,6 +169,7 @@ router.post('/ask', async (req, res) => {
     const situation = inferSupportSituation(query);
 
     for (const agentName of orchestration.agents_to_call) {
+      const agentStart = Date.now();
       let output;
       switch (agentName) {
         case 'inventory':
@@ -177,7 +195,13 @@ router.post('/ask', async (req, res) => {
             reasoning: ['Unknown agent selected by orchestrator.'],
           };
       }
-      agentOutputs.push({ agent: agentName, ...output });
+      const latencyMs = Date.now() - agentStart;
+      agentOutputs.push({
+        agent: agentName,
+        ...output,
+        latency_ms: latencyMs,
+        cost: getAgentCost(agentName),
+      });
     }
 
     const synthesized = synthesizeRecommendations({ agents_outputs: agentOutputs });
