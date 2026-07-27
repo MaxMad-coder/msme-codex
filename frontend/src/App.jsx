@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import HealthScore from './components/HealthScore.jsx';
 import ExplainabilityModal from './components/ExplainabilityModal.jsx';
+import CodexTimeline from './components/CodexTimeline.jsx';
+import ReportGenerator from './components/ReportGenerator.jsx';
+import NaturalLanguageQuery from './components/NaturalLanguageQuery.jsx';
 
 // Use VITE_API_URL when set (Vercel), otherwise fall back to the Render backend URL
 const API_BASE = import.meta.env.VITE_API_URL || 'https://msme-codex.onrender.com';
@@ -189,6 +192,16 @@ export default function App() {
             </div>
           </aside>
         </main>
+
+        <div className="mt-8 grid gap-6 xl:grid-cols-3">
+          <div className="xl:col-span-2 space-y-6">
+            <CodexTimeline />
+            <ReportGenerator />
+          </div>
+          <div className="space-y-6">
+            <NaturalLanguageQuery />
+          </div>
+        </div>
       </div>
 
       <ExplainabilityModal open={showWhy} onClose={() => setShowWhy(false)} reasoning_chain={result?.reasoning_chain ?? []} />
