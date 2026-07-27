@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: msme-copilot-api
+    env: node
+    root: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: OPENAI_API_KEY
+        scope: build,runtime
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        scope: runtime
+      - key: DB_PATH
+        scope: runtime
