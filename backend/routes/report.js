@@ -2,9 +2,12 @@ import { Router } from 'express';
 import PDFDocument from 'pdfkit';
 import sqlite3 from 'sqlite3';
 import { promisify } from 'util';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const router = Router();
-const dbPath = process.env.DB_PATH || './data/msme.db';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../data/msme.db');
 
 function openDb() {
   return new sqlite3.Database(dbPath);

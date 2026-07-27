@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 const router = Router();
-const logPath = path.resolve('./codex-logs/CODEX_LOG.md');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const logPath = path.resolve(__dirname, '../../codex-logs/CODEX_LOG.md');
 
 function parseCodexLog(markdown) {
   const sections = markdown.split(/^##\s+/m).slice(1);

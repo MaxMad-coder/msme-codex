@@ -1,6 +1,10 @@
 import sqlite3 from 'sqlite3';
 
-const DB_PATH = process.env.DB_PATH || './data/msme.db';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DB_PATH = process.env.DB_PATH || path.resolve(__dirname, '../data/msme.db');
 
 function openDb() {
   return new sqlite3.Database(DB_PATH);

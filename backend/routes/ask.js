@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import sqlite3 from 'sqlite3';
 import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { orchestrateQuery } from '../agents/orchestrator.js';
 import { analyzeInventory } from '../agents/inventoryAgent.js';
 import { analyzeFinance } from '../agents/financeAgent.js';
@@ -10,7 +12,8 @@ import { draftSupportMessage } from '../agents/supportAgent.js';
 import { synthesizeRecommendations } from '../agents/synthesizer.js';
 
 const router = Router();
-const dbPath = process.env.DB_PATH || './data/msme.db';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../data/msme.db');
 
 function openDb() {
   return new sqlite3.Database(dbPath);
